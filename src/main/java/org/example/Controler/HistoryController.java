@@ -1,4 +1,4 @@
-package org.taskmanager.Controller;
+package org.example.Controler;
 
 public class HistoryController {
 }

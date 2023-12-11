@@ -1,4 +1,4 @@
-package org.taskmanager.Manager;
+package org.example.Manager;
 
 public class CategorieManager {
 }
