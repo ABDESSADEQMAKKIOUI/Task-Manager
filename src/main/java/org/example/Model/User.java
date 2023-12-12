@@ -1,7 +1,7 @@
 package org.example.Model;
 
 public class User {
-    private int id;
+    private static int id;
     private String login;
     private String password;
     private String role;
@@ -9,8 +9,8 @@ public class User {
     public User() {
     }
 
-    public User(int id, String login, String password, String role) {
-        this.id = id;
+    public User(String login, String password, String role) {
+        id++;
         this.login = login;
         this.password = password;
         this.role = role;

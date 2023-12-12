@@ -8,38 +8,15 @@ import org.example.Model.Task;
 
 public interface InterfaceController {
 
-    	public void add();
+    	 void add();
 	    
-	    public void update();
+	     void update();
 	    
-	    public void delete();
+	     void delete();
 
-        public void changeTaskCategory();
+         boolean exist(Object object);
+	    
+	     List<Object> getAll();
+		 Object saisie();
 
-        //po teste l'exstence des object
-        public boolean exist(Object object);
-	    
-	    public List<Object> getAll();
-	    
-	    public void show();
-
-        public void showcodeTask();
-	    
-	    public void showTasksbycategoy(Categorie categorie);
-	    
-	    public void assignCategory(Task task, Categorie category);
-	    
-	    public List<Task> filterByCategory(Categorie category);
-	    //priority will be enum
-	    public void setPriority(Task task, Priority priority);
-	    
-	     public List<Task> sortByPriority();
-
-	    public List<Task> sortByCreationDate();
-
-	    public List<String> getActionHistory();
-	  
-        //fichier
-	    public void exportTasks(String path); 
-	    public void importTasks(String path);
 }

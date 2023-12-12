@@ -1,5 +1,5 @@
 package org.example.Controler;
 
-public class TaskController {
+public class TaskController{
 
 }
