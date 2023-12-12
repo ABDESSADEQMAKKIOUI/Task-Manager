@@ -1,5 +1,6 @@
 package org.example.Controler;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.example.Model.Categorie;
@@ -14,9 +15,9 @@ public interface InterfaceController {
 	    
 	     void delete();
 
-         boolean exist(Object object);
+         boolean exist() throws SQLException;
 	    
-	     List<Object> getAll();
+	     void getAll();
 		 Object saisie();
 
 }

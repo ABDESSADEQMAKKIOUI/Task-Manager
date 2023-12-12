@@ -18,7 +18,7 @@ public class DatabaseConnection {
             // System.out.println("good");
         }
         catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+throw new RuntimeException(e);
         }
     }
     public static Connection getConnection()

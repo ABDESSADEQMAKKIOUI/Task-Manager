@@ -3,6 +3,7 @@ package org.example.Controler;
 import org.example.Manager.UserManager;
 import org.example.Model.User;
 
+import java.sql.SQLException;
 import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Scanner;
@@ -20,22 +21,33 @@ public class UserController implements InterfaceController {
 
     @Override
     public void update() {
-
+        System.out.println("enter id of user to update");
+        int id = scanner.nextInt();
+        User user = saisie();
+        UserManager.updateDOAById(id,user);
     }
 
     @Override
     public void delete() {
+        System.out.println("enter id of user to update");
+        int id = scanner.nextInt();
+        User user = UserManager.searchDOAById(id);
+        User.getUsers().remove(user);
+        UserManager.deleteDOAById(id);
+
 
     }
 
     @Override
-    public boolean exist(Object object) {
-        return false;
+    public boolean exist() throws SQLException {
+        System.out.println("enter id of user to update");
+        int id = scanner.nextInt();
+      return UserManager.userExist(id);
     }
 
     @Override
-    public List<Object> getAll() {
-        return null;
+    public void getAll() {
+        UserManager.getAll();
     }
 
     @Override

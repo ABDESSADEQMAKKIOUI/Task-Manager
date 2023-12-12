@@ -104,7 +104,7 @@ public class UserManager {
         }
     }
 
-    private static boolean userExist(int id) throws SQLException {
+    public static boolean userExist(int id) throws SQLException {
             String checkQuery = "SELECT COUNT(*) FROM contacts WHERE id = ?";
             PreparedStatement checkStatement = connection.prepareStatement(checkQuery);
             checkStatement.setInt(1, id);
@@ -130,15 +130,9 @@ public class UserManager {
             // Execute the query and get the result set
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            // Display the contacts
-            System.out.println("All User in the Database:");
 
             while (resultSet.next()) {
-                System.out.println("ID: " + resultSet.getInt("id"));
-                System.out.println("name: " + resultSet.getString("login"));
-                System.out.println("role: " + resultSet.getString("role"));
-
-                System.out.println("----------------------------");
+                User.getUsers().add((User) resultSet);
             }
 
             // Close the resources
@@ -151,8 +145,7 @@ public class UserManager {
         }
     }
 
-    public static void searchDOAById(int id)
-    {
+    public static User searchDOAById(int id) {
         try {
             // Define the SQL query to search for a contact by id
             String selectQuery = "SELECT * FROM users WHERE id = ?";
@@ -169,20 +162,16 @@ public class UserManager {
             // Display the id
             System.out.println("User with id '" + id + "':");
 
+            User user = null;
             while (resultSet.next()) {
-                System.out.println("ID: " + resultSet.getInt("id"));
-                System.out.println("name: " + resultSet.getString("login"));
-                System.out.println("role: " + resultSet.getString("role"));
-                System.out.println("----------------------------");
+                user = (User) resultSet;
             }
-
+            return user;
             // Close the resources
-            resultSet.close();
-            preparedStatement.close();
-            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("Error searching for contact in the database.");
+            System.out.println("Error searching for user in the database.");
         }
+        return null;
     }
 }
