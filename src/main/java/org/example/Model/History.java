@@ -1,5 +1,6 @@
 package org.example.Model;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 public class History {
@@ -7,12 +8,12 @@ public class History {
     private int id_user;
     private int id_task;
     private String libelle;
-    private LocalDate date_creation;
+    private Date date_creation;
 
     public History() {
     }
 
-    public History(int id, int id_user, int id_task, String libelle, LocalDate date_creation) {
+    public History(int id, int id_user, int id_task, String libelle, Date date_creation) {
         this.id = id;
         this.id_user = id_user;
         this.id_task = id_task;
@@ -52,11 +53,11 @@ public class History {
         this.libelle = libelle;
     }
 
-    public LocalDate getDate_creation() {
+    public Date getDate_creation() {
         return date_creation;
     }
 
-    public void setDate_creation(LocalDate date_creation) {
+    public void setDate_creation(Date date_creation) {
         this.date_creation = date_creation;
     }
 }

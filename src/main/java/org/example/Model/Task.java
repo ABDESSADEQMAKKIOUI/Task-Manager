@@ -1,8 +1,8 @@
 package org.example.Model;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.HashMap;
-
 
 public class Task {
     private static int id ;
@@ -10,11 +10,11 @@ public class Task {
     private String libelle ;
     private Priority priority ;
     private int id_category ;
-     private int id_user ;
-     private String date_creation ;
-     private static HashMap<String,Task> tasks ;
+    private int id_user ;
+    private LocalDate date_creation ;
+    private static HashMap<String,Task> tasks ;
 
-     public Task(String code, String libelle, Priority priority, int id_category, int id_user, String date_creation) {
+    public Task(String code, String libelle, Priority priority, int id_category, int id_user, LocalDate date_creation) {
         this.code = code;
         this.libelle = libelle;
         this.priority = priority;
@@ -22,11 +22,10 @@ public class Task {
         this.id_user = id_user;
         this.date_creation = date_creation;
         tasks.put(this.code,this);
-
     }
 
     public Task() {
-   
+
     }
 
     public static int getId() {
@@ -77,11 +76,11 @@ public class Task {
         this.id_user = id_user;
     }
 
-    public String getDate_creation() {
+    public LocalDate getDate_creation() {
         return date_creation;
     }
 
-    public void setDate_creation(String date_creation) {
+    public void setDate_creation(LocalDate date_creation) {
         this.date_creation = date_creation;
     }
 
@@ -92,13 +91,5 @@ public class Task {
     public static void setTasks(HashMap<String, Task> tasks) {
         Task.tasks = tasks;
     }
-    
-
-
-
-
-    
-    
-
 
 }

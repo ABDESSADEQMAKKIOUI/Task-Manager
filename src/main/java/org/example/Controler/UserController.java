@@ -1,10 +1,9 @@
 package org.example.Controler;
 
-import org.example.Manager.UserManager;
+import org.example.DBO.UserDBO;
 import org.example.Model.User;
 
 import java.sql.SQLException;
-import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,51 +12,55 @@ public class UserController implements InterfaceController {
     Scanner scanner = new Scanner(System.in);
 
     @Override
-    public void add() {
+    public void add()
+    {
         User user = saisie();
-        UserManager.addDBO(user);
-        String status = "Added user";
+        UserDBO.addDBO(user);
+        String status = "Added task";
     }
 
     @Override
-    public void update() {
-        System.out.println("enter id of user to update");
+    public void update()
+    {
+        System.out.println("Entrer id de user tu veux modifier:");
         int id = scanner.nextInt();
         User user = saisie();
-        UserManager.updateDOAById(id,user);
+        UserDBO.updateDOAById(id, user);
+        String status = "Update task";
     }
 
     @Override
-    public void delete() {
-        System.out.println("enter id of user to update");
+    public void delete()
+    {
+        System.out.println("Entrer id de user tu veux supprimer:");
         int id = scanner.nextInt();
-        User user = UserManager.searchDOAById(id);
-        User.getUsers().remove(user);
-        UserManager.deleteDOAById(id);
-
-
+        UserDBO.deleteDOAById(id);
+        String status = "Supprimer task";
     }
 
     @Override
-    public boolean exist() throws SQLException {
-        System.out.println("enter id of user to update");
+    public boolean exist() throws SQLException
+    {
+        System.out.println("Entrer id pour check si il existe");
         int id = scanner.nextInt();
-      return UserManager.userExist(id);
+        return UserDBO.userExist(id);
     }
 
     @Override
-    public void getAll() {
-        UserManager.getAll();
+    public void getAll()
+    {
+        UserDBO.getAll();
     }
 
     @Override
     public User saisie() {
         System.out.println("Entrer votre login:");
         String login = scanner.next();
-        System.out.println("Entrer votre password");
+        System.out.println("Entrer votre mot de passe:");
         String password = scanner.next();
         System.out.println("Entrer votre role:");
         String role = scanner.next();
-        return new User(login,password,role);
+
+        return new User(login, password, role);
     }
 }

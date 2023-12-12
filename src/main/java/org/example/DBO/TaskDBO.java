@@ -3,10 +3,8 @@ package org.example.DBO;
 
 import org.example.Model.Task;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
 
 public class TaskDBO {
     static Connection connection = DatabaseConnection.getConnection();
@@ -22,7 +20,7 @@ public class TaskDBO {
             ps.setString(2, task.getLibelle());
             ps.setInt(3, task.getId_category());
             ps.setInt(4, task.getId_user());
-            ps.setString(5, task.getDate_creation());
+            ps.setDate(5, Date.valueOf(task.getDate_creation()));
             ps.executeUpdate();
 
             ps.close();
@@ -67,7 +65,7 @@ public class TaskDBO {
                 ps.setString(2, task.getPriority().getName());
                 ps.setInt(3, task.getId_category());
                 ps.setInt(4,task.getId_user());
-                ps.setString(5, task.getDate_creation());
+                ps.setDate(5, Date.valueOf(task.getDate_creation()));
                 ps.executeUpdate();
 
                 ps.close();
