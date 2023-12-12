@@ -1,4 +1,4 @@
-package org.example.Controler;
+package org.example.Model;
 
 public enum Priority {
     HIGH("High", 3),
@@ -8,13 +8,11 @@ public enum Priority {
     private String name;
     private int value;
 
-    // Constructor
     Priority(String name, int value) {
         this.name = name;
         this.value = value;
     }
 
-    // Getters
     public String getName() {
         return name;
     }
