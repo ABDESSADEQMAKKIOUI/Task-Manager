@@ -37,7 +37,6 @@ public class UserController implements InterfaceController {
         UserDBO.deleteDOAById(id);
         String status = "Supprimer task";
     }
-
     @Override
     public boolean exist() throws SQLException
     {
@@ -63,4 +62,13 @@ public class UserController implements InterfaceController {
 
         return new User(login, password, role);
     }
+    public void login(){
+        System.out.println("Entrer votre login:");
+        String login = scanner.next();
+        System.out.println("Entrer votre mot de passe:");
+        String password = scanner.next();
+        User.setUserConnect(UserDBO.login(login,password));
+
+    }
+
 }

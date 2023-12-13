@@ -9,6 +9,7 @@ public class User {
     private String password;
     private String role;
     private static ArrayList<User> users = new ArrayList<User>();
+    private static User userConnect;
 
     public User() {
     }
@@ -27,6 +28,14 @@ public class User {
 
     public static void setUsers(ArrayList<User> users) {
         User.users = users;
+    }
+
+    public static User getUserConnect() {
+        return userConnect;
+    }
+
+    public static void setUserConnect(User userConnect) {
+        User.userConnect = userConnect;
     }
 
     public int getId() {

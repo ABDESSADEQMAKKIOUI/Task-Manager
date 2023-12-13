@@ -173,4 +173,24 @@ public class UserDBO {
         }
         return null;
     }
+    public static User login(String login , String motpass){
+        try {
+            String selectQuery = "SELECT * FROM users WHERE login = ? AND password=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(selectQuery);
+
+            // Set the email parameter in the query
+            preparedStatement.setString(1, login);
+            preparedStatement.setString(2, motpass);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            User user = null;
+            while (resultSet.next()){
+                user = (User) resultSet;
+            }
+            return user;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+
+        }
+    }
 }
