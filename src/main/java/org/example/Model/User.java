@@ -1,10 +1,15 @@
 package org.example.Model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class User {
     private static int id;
     private String login;
     private String password;
     private String role;
+    private static ArrayList<User> users = new ArrayList<User>();
+    private static User userConnect;
 
     public User() {
     }
@@ -14,6 +19,23 @@ public class User {
         this.login = login;
         this.password = password;
         this.role = role;
+        users.add(this);
+    }
+
+    public static ArrayList<User> getUsers() {
+        return users;
+    }
+
+    public static void setUsers(ArrayList<User> users) {
+        User.users = users;
+    }
+
+    public static User getUserConnect() {
+        return userConnect;
+    }
+
+    public static void setUserConnect(User userConnect) {
+        User.userConnect = userConnect;
     }
 
     public int getId() {

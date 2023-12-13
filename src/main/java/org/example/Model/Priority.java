@@ -5,8 +5,8 @@ public enum Priority {
     MEDIUM("Medium", 2),
     LOW("Low", 1);
 
-    private String name;
-    private int value;
+    private final String name;
+    private final int value;
 
     Priority(String name, int value) {
         this.name = name;
