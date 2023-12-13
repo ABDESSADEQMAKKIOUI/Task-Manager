@@ -1,8 +1,10 @@
 package org.example.Controler;
 
 import org.example.DBO.TaskDBO;
+import org.example.DBO.UserDBO;
 import org.example.Model.Priority;
 import org.example.Model.Task;
+import org.example.Model.User;
 
 import java.sql.Date;
 import java.sql.SQLException;
@@ -23,6 +25,7 @@ public class TaskController implements InterfaceController{
         Task task = saisie();
         TaskDBO.addDBO(task);
         String status = "Ajouter tache";
+        HistoryController H = new HistoryController()
     }
 
     @Override
@@ -59,18 +62,18 @@ public class TaskController implements InterfaceController{
     @Override
     public Task saisie()
     {
-        System.out.println("Entrer code de tache:");
-        String code = scanner.next();
-        System.out.println("Entrer libelle de tache:");
-        String libelle = scanner.next();
-        System.out.println("Entrer tache priority 1-HIGH 2-MEDIUM 3-LOW:");
-        Priority priority = Priority.valueOf(scanner.next().toUpperCase());
-        System.out.println("Entrer tache id categorie:");
-        int idCategory = scanner.nextInt();
-        System.out.println("Entrer tache id user:");
-        int idUser = scanner.nextInt();
-        LocalDate dateCreationFormat = LocalDate.now();
-        return new Task(code, libelle, priority, idCategory, idUser, dateCreationFormat);
+        if (User.getUserConnect() != null) {
+            System.out.println("Entrer code de tache:");
+            String code = scanner.next();
+            System.out.println("Entrer libelle de tache:");
+            String libelle = scanner.next();
+            System.out.println("Entrer tache priority 1-HIGH 2-MEDIUM 3-LOW:");
+            Priority priority = Priority.valueOf(scanner.next().toUpperCase());
+            System.out.println("Entrer tache id categorie:");
+            int idCategory = scanner.nextInt();
+            LocalDate dateCreationFormat = LocalDate.now();
+            return new Task(code, libelle, priority, null, User.getUserConnect(), dateCreationFormat);
+        }
     }
 
 }

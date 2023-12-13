@@ -9,17 +9,17 @@ public class Task {
     private String code ;
     private String libelle ;
     private Priority priority ;
-    private int id_category ;
-    private int id_user ;
+    private Categorie categorie ;
+    private User user ;
     private LocalDate date_creation ;
     private static HashMap<String,Task> tasks ;
 
-    public Task(String code, String libelle, Priority priority, int id_category, int id_user, LocalDate date_creation) {
+    public Task(String code, String libelle, Priority priority, Categorie categorie, User user, LocalDate date_creation) {
         this.code = code;
         this.libelle = libelle;
         this.priority = priority;
-        this.id_category = id_category;
-        this.id_user = id_user;
+        this.categorie = categorie;
+        this.user = user;
         this.date_creation = date_creation;
         tasks.put(this.code,this);
     }
