@@ -6,20 +6,20 @@ import java.util.ArrayList;
 
 public class History {
     private static int id;
-    private int id_user;
-    private int id_task;
+    private User user;
+    private Task task;
     private String libelle;
-    private Date date_creation;
+    private LocalDate date_creation;
     private static ArrayList<History> histories = new ArrayList<History>();
 
 
     public History() {
     }
 
-    public History( int id_user, int id_task, String libelle, Date date_creation) {
+    public History(User user, Task task, String libelle, LocalDate date_creation) {
         id++;
-        this.id_user = id_user;
-        this.id_task = id_task;
+        this.user = user;
+        this.task = task;
         this.libelle = libelle;
         this.date_creation = date_creation;
         histories.add(this);
@@ -31,23 +31,23 @@ public class History {
     }
 
     public void setId(int id) {
-        this.id = id;
+        History.id = id;
     }
 
-    public int getId_user() {
-        return id_user;
+    public User getUser() {
+        return user;
     }
 
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public int getId_task() {
-        return id_task;
+    public Task getTask() {
+        return task;
     }
 
-    public void setId_task(int id_task) {
-        this.id_task = id_task;
+    public void setTask(Task task) {
+        this.task = task;
     }
 
     public String getLibelle() {
@@ -58,11 +58,11 @@ public class History {
         this.libelle = libelle;
     }
 
-    public Date getDate_creation() {
+    public LocalDate getDate_creation() {
         return date_creation;
     }
 
-    public void setDate_creation(Date date_creation) {
+    public void setDate_creation(LocalDate date_creation) {
         this.date_creation = date_creation;
     }
     public static ArrayList<History> getHistories() {

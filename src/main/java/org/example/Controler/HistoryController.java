@@ -1,23 +1,19 @@
 package org.example.Controler;
 
-import org.example.DBO.HistoryDBO;
-import org.example.DBO.UserDBO;
+import org.example.DAO.HistoryDAO;
 import org.example.Model.History;
+import org.example.Model.Task;
 import org.example.Model.User;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class HistoryController {
     Scanner scanner = new Scanner(System.in);
 
-    public void addHistory(int id_user, int id_task, String libelle, Date date_creation)
+    public static void addHistory(User user, Task task, String libelle, LocalDate date_creation)
     {
-        History history = new History( id_user, id_task,  libelle,  date_creation);
-        HistoryDBO.addHistory(history);
-
+        History history = new History(user, task,  libelle, date_creation);
+        HistoryDAO.addHistory(history);
     }
-    
-
-
 }

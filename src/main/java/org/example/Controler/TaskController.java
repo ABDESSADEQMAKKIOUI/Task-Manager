@@ -1,39 +1,33 @@
 package org.example.Controler;
 
-import org.example.DBO.TaskDBO;
-import org.example.DBO.UserDBO;
+import org.example.DAO.TaskDAO;
 import org.example.Model.Priority;
 import org.example.Model.Task;
 import org.example.Model.User;
 
-import java.sql.Date;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Scanner;
 
 public class TaskController implements InterfaceController{
 
     Scanner scanner = new Scanner(System.in);
     @Override
-    public void add()
-    {
+    public void add() throws SQLException {
         Task task = saisie();
-        TaskDBO.addDBO(task);
+        TaskDAO.addDBO(task);
         String status = "Ajouter tache";
-        HistoryController H = new HistoryController()
+        task.getCategorie().getTasks().put(task.getCode(), task);
+        HistoryController.addHistory(User.getUserConnect(),task,status,LocalDate.now());
     }
 
     @Override
-    public void update()
-    {
+    public void update() throws SQLException {
         Task task = saisie();
-        TaskDBO.updateDBOByCode(task.getCode(), task);
+        TaskDAO.updateDBOByCode(task.getCode(), task);
         String status = "Modifier tache";
+        HistoryController.addHistory(User.getUserConnect(),task,status,LocalDate.now());
     }
 
     @Override
@@ -41,39 +35,43 @@ public class TaskController implements InterfaceController{
     {
         System.out.println("Entrer code de tache");
         String code = scanner.next();
-        TaskDBO.deleteDOAByCode(code);
+        Task task  = TaskDAO.searchDAOByCode(code);
+        TaskDAO.deleteDOAByCode(code);
         String status = "Supprimer tache";
-    }
-
-    @Override
-    public boolean exist() throws SQLException
-    {
-        System.out.println("Entrer code de tache:");
-        String code = scanner.next();
-        return TaskDBO.taskExist(code);
+        HistoryController.addHistory(User.getUserConnect(), task, status , LocalDate.now());
     }
 
     @Override
     public void getAll()
     {
-        TaskDBO.getAll();
+        Task.getTasks().forEach((s, task) -> System.out.println(task.toString()));
+    }
+
+    public void trieTaskWithDate()
+    {
+        System.out.println("Cherchez tache par date :");
+        LocalDate date = LocalDate.parse(scanner.next());
+        List<Task> task = TaskDAO.searchDAOByDate(date);
+        assert task != null;
+        task.forEach(task1 -> System.out.println(task1.toString()));
     }
 
     @Override
-    public Task saisie()
+    public Task saisie() throws SQLException
     {
-        if (User.getUserConnect() != null) {
-            System.out.println("Entrer code de tache:");
-            String code = scanner.next();
+        System.out.println("Entrer code de tache:");
+        String code = scanner.next();
+        if (User.getUserConnect() != null && !TaskDAO.taskExist(code))
+        {
             System.out.println("Entrer libelle de tache:");
             String libelle = scanner.next();
             System.out.println("Entrer tache priority 1-HIGH 2-MEDIUM 3-LOW:");
             Priority priority = Priority.valueOf(scanner.next().toUpperCase());
             System.out.println("Entrer tache id categorie:");
             int idCategory = scanner.nextInt();
-            LocalDate dateCreationFormat = LocalDate.now();
-            return new Task(code, libelle, priority, null, User.getUserConnect(), dateCreationFormat);
+            return new Task(code, libelle, priority, null, User.getUserConnect(), LocalDate.now());
         }
+        return null;
     }
 
 }

@@ -12,7 +12,8 @@ public class Task {
     private Categorie categorie ;
     private User user ;
     private LocalDate date_creation ;
-    private static HashMap<String,Task> tasks ;
+
+    private static HashMap<String,Task> tasks = new HashMap<>();
 
     public Task(String code, String libelle, Priority priority, Categorie categorie, User user, LocalDate date_creation) {
         this.code = code;
@@ -28,7 +29,7 @@ public class Task {
 
     }
 
-    public static int getId() {
+    public int getId() {
         return id;
     }
 
@@ -60,20 +61,20 @@ public class Task {
         this.priority = priority;
     }
 
-    public int getId_category() {
-        return id_category;
+    public Categorie getCategorie() {
+        return categorie;
     }
 
-    public void setId_category(int id_category) {
-        this.id_category = id_category;
+    public void setCategorie(Categorie categorie) {
+        this.categorie = categorie;
     }
 
-    public int getId_user() {
-        return id_user;
+    public User getUser() {
+        return user;
     }
 
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public LocalDate getDate_creation() {
@@ -92,4 +93,14 @@ public class Task {
         Task.tasks = tasks;
     }
 
+    @Override
+    public String toString() {
+        return "Task{" +
+                "code='" + code + '\'' +
+                ", libelle='" + libelle + '\'' +
+                ", priority=" + priority +
+                ", user=" + user +
+                ", date_creation=" + date_creation +
+                '}';
+    }
 }
