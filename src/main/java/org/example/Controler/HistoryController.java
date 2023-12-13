@@ -1,20 +1,23 @@
 package org.example.Controler;
 
+import org.example.DBO.HistoryDBO;
 import org.example.DBO.UserDBO;
 import org.example.Model.History;
 import org.example.Model.User;
 
+import java.sql.Date;
 import java.util.Scanner;
 
-public class HistoryController implements InterfaceController{
+public class HistoryController {
     Scanner scanner = new Scanner(System.in);
-    @Override
-    public void add()
+
+    public void addHistory(int id_user, int id_task, String libelle, Date date_creation)
     {
-        History history
-        UserDBO.addDBO(user);
-        String status = "Added task";
+        History history = new History( id_user, id_task,  libelle,  date_creation);
+        HistoryDBO.addHistory(history);
+
     }
+    
 
 
 }

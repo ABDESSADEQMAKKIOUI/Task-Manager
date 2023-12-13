@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class History {
-    private int id;
+    private static int id;
     private int id_user;
     private int id_task;
     private String libelle;
@@ -16,8 +16,8 @@ public class History {
     public History() {
     }
 
-    public History(int id, int id_user, int id_task, String libelle, Date date_creation) {
-        this.id = id;
+    public History( int id_user, int id_task, String libelle, Date date_creation) {
+        id++;
         this.id_user = id_user;
         this.id_task = id_task;
         this.libelle = libelle;
