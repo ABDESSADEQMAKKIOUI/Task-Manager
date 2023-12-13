@@ -17,7 +17,5 @@ public class HistoryController {
         HistoryDBO.addHistory(history);
 
     }
-    
-
 
 }
